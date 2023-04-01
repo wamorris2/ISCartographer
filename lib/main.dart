@@ -272,6 +272,26 @@ class MyHomePage extends StatefulWidget {
 
 }
 
+class NavigationWidget extends StatefulWidget {
+  final String roomNumber;
+  NavigationState(this.roomNumber);
+
+  @override
+  NavigationState createState() => NavigationState();
+}
+
+class NavigationState extends State<NavigationWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navigation Route'),
+      ),
+      body: Center(child: Image.asset("assets/ISC_First.png")),
+    );
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   String roomNumber = "";
   String locationType = "near room";
@@ -323,6 +343,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ]
           ),
         ),
+      floatingActionButton: FloatingActionButton (
+        onPressed:() {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>  NavigationWidget(roomNumber)),
+          );
+        },
+        backgroundColor: Colors.black,
+        child: Text('GO!'),
+      ),
       ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 
