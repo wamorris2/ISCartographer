@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'Graph.dart';
+import 'Node.dart';
 
 void main() {
   runApp(const MyApp());
+  // List<Node> ISCNodes = [
+  //   Node([], 1, 0.0, 0.0, 0.0, 'r123'),
+  // ];
+  //
+  // Graph ISCGraph = Graph(ISCNodes);
 }
 
 class MyApp extends StatelessWidget {
