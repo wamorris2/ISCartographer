@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,16 +45,17 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   final TextStyle textStyle = const TextStyle(
-    fontSize: 20
+    fontSize: 100
   );
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final String _room_number = "9999";
+  final String _room_number = "";
 
   void _incrementCounter() {
     setState(() {
@@ -107,19 +109,30 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            TextFormField(
-              cursorColor: Colors.green,
-              focusNode: FocusNode(),
-              controller: TextEditingController(
-                text: _room_number
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 20
               ),
-              style: widget.textStyle,
-              autocorrect: false,
-              autofocus: true,
-              textAlign: TextAlign.center,
-              maxLength: 4,
-              keyboardType: TextInputType.number
+              child: SizedBox(
+                width: 300,
+                child: TextFormField(
+                  cursorColor: Colors.green,
+                  focusNode: FocusNode(),
+                  controller: TextEditingController(text: _room_number),
+                  style: widget.textStyle,
+                  autocorrect: false,
+                  autofocus: true,
+                  textAlign: TextAlign.center,
+                  maxLength: 4,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+                  onFieldSubmitted: (_room_number) {
+                    // here is where we would put logic for if we ask the user for second input
 
+                  } // onFieldSubmitted
+                ),
+              ),
             )
           ],
         ),
@@ -131,4 +144,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+
+
+// apparently we have to dispose these widgets after use to free the resources
+
 }
