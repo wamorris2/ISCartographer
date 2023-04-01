@@ -43,12 +43,17 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+  final TextStyle textStyle = const TextStyle(
+    fontSize: 20
+  );
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final String _room_number = "9999";
 
   void _incrementCounter() {
     setState(() {
@@ -96,12 +101,26 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have pushed the button this many times lol:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            TextFormField(
+              cursorColor: Colors.green,
+              focusNode: FocusNode(),
+              controller: TextEditingController(
+                text: _room_number
+              ),
+              style: widget.textStyle,
+              autocorrect: false,
+              autofocus: true,
+              textAlign: TextAlign.center,
+              maxLength: 4,
+              keyboardType: TextInputType.number
+
+            )
           ],
         ),
       ),
