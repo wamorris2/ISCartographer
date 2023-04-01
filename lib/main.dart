@@ -1,15 +1,131 @@
 import 'package:flutter/material.dart';
+import 'package:isc_cartogropher/UndirectedEdge.dart';
 import 'Graph.dart';
 import 'Node.dart';
 
 void main() {
   runApp(const MyApp());
-  // List<Node> ISCNodes = [
-  //   Node([], 1, 0.0, 0.0, 0.0, 'r123'),
-  // ];
-  //
-  // Graph ISCGraph = Graph(ISCNodes);
-}
+  List<Node> ISCNodes = [
+    // Corridors 0 - 83
+    Node([], 1, 811, 287, 1.0, 'c1007'),
+    Node([], 1, 811, 380, 1.0, 'c1007'),
+    Node([], 1, 811, 636, 1.0, 'c1007'),
+    Node([], 1, 811, 719, 1.0, 'c1007'),
+
+    Node([], 1, 811, 797, 1.0, 'c1008'),
+    Node([], 1, 748, 797, 1.0, 'c1008'),
+    Node([], 1, 811, 1012, 1.0, 'c1008'),
+    Node([], 1, 811, 1110, 1.0, 'c1008'),
+    Node([], 1, 750, 1110, 1.0, 'c1008'),
+    Node([], 1, 811, 1275, 1.0, 'c1008'),
+    Node([], 1, 811, 1350, 1.0, 'c1008'),
+    Node([], 1, 811, 1440, 1.0, 'c1008'),
+    Node([], 1, 750, 1110, 1.0, 'c1008'),
+
+    Node([], 1, 811, 1500, 1.0, 'c1010'),
+
+    Node([], 1, 811, 1780, 1.0, 'c1011'),
+    Node([], 1, 811, 1870, 1.0, 'c1011'),
+    Node([], 1, 750, 1870, 1.0, 'c1011'),
+    Node([], 1, 811, 2023, 1.0, 'c1011'),
+    Node([], 1, 750, 2023, 1.0, 'c1011'),
+    Node([], 1, 885, 2023, 1.0, 'c1011'),
+    Node([], 1, 885, 2100, 1.0, 'c1011'),
+    Node([], 1, 980, 1780, 1.0, 'c1011'),
+
+    Node([], 1, 1085, 1780, 1.0, 'c1013'),
+    Node([], 1, 1140, 1780, 1.0, 'c1013'),
+    Node([], 1, 1140, 1950, 1.0, 'c1013'),
+
+    Node([], 1, 1275, 1950, 1.0, 'c1020'),
+    Node([], 1, 1420, 1950, 1.0, 'c1020'),
+    Node([], 1, 1575, 1950, 1.0, 'c1020'),
+    Node([], 1, 1725, 1950, 1.0, 'c1020'),
+    Node([], 1, 1880, 1950, 1.0, 'c1020'),
+    Node([], 1, 2008, 1950, 1.0, 'c1020'),
+    Node([], 1, 2130, 1950, 1.0, 'c1020'),
+
+    Node([], 1, 2295, 1950, 1.0, 'c1019'),
+    Node([], 1, 2295, 1840, 1.0, 'c1019'),
+
+    Node([], 1, 2295, 1755, 1.0, 'c1018'),
+    Node([], 1, 2295, 1630, 1.0, 'c1018'),
+    Node([], 1, 2295, 1555, 1.0, 'c1018'),
+
+    Node([], 1, 2295, 1755, 1.0, 'c1017'),
+    Node([], 1, 2180, 1755, 1.0, 'c1017'),
+    Node([], 1, 2085, 1755, 1.0, 'c1017'),
+
+    Node([], 1, 2085, 1555, 1.0, 'c1015'),
+    Node([], 1, 2022, 1555, 1.0, 'c1015'),
+    Node([], 1, 1935, 1560, 1.0, 'c1015'),
+    Node([], 1, 1935, 1495, 1.0, 'c1015'),
+    Node([], 1, 1812, 1560, 1.0, 'c1015'),
+    Node([], 1, 1670, 1560, 1.0, 'c1015'),
+    Node([], 1, 1505, 1560, 1.0, 'c1015'),
+    Node([], 1, 1355, 1560, 1.0, 'c1015'),
+    Node([], 1, 1222, 1560, 1.0, 'c1015'),
+
+    Node([], 1, 1140, 1560, 1.0, 'c1013'),
+    Node([], 1, 1085, 1560, 1.0, 'c1013'),
+
+    Node([], 1, 1100, 1400, 1.0, 'c1205'),
+    Node([], 1, 1400, 1400, 1.0, 'c1205'),
+    Node([], 1, 1700, 1400, 1.0, 'c1205'),
+    Node([], 1, 1700, 1250, 1.0, 'c1205'),
+    Node([], 1, 2010, 1250, 1.0, 'c1205'),
+    Node([], 1, 2195, 1250, 1.0, 'c1205'),
+    Node([], 1, 2305, 1250, 1.0, 'c1205'),
+
+    Node([], 1, 2305, 1195, 1.0, 'c1210'),
+    Node([], 1, 2120, 1195, 1.0, 'c1210'),
+    Node([], 1, 1910, 1195, 1.0, 'c1210'),
+    Node([], 1, 1700, 1195, 1.0, 'c1210'),
+    Node([], 1, 1700, 1195, 1.0, 'c1210'),
+    Node([], 1, 1400, 1195, 1.0, 'c1210'),
+    Node([], 1, 1305, 1195, 1.0, 'c1210'),
+
+    Node([], 1, 1305, 1100, 1.0, 'c1214'),
+    Node([], 1, 1305, 820, 1.0, 'c1214'),
+    Node([], 1, 1305, 720, 1.0, 'c1214'),
+    Node([], 1, 1305, 530, 1.0, 'c1214'),
+    Node([], 1, 1305, 295, 1.0, 'c1214'),
+    Node([], 1, 1240, 295, 1.0, 'c1214'),
+
+    Node([], 1, 1345, 265, 1.0, 'c1212'),
+    Node([], 1, 1430, 305, 1.0, 'c1212'),
+    Node([], 1, 1555, 370, 1.0, 'c1212'),
+    Node([], 1, 1690, 435, 1.0, 'c1212'),
+    Node([], 1, 1800, 490, 1.0, 'c1212'),
+    Node([], 1, 1920, 545, 1.0, 'c1212'),
+    Node([], 1, 2040, 605, 1.0, 'c1212'),
+    Node([], 1, 2300, 725, 1.0, 'c1212'),
+
+    Node([], 1, 2300, 820, 1.0, 'c1211'),
+    Node([], 1, 2300, 940, 1.0, 'c1211'),
+    Node([], 1, 2300, 1090, 1.0, 'c1211'),
+
+    Node([], 1, 2115, 720, 1.0, 'c1213'),
+    Node([], 1, 1795, 720, 1.0, 'c1213'),
+    Node([], 1, 1515, 720, 1.0, 'c1213'),
+    Node([], 1, 1415, 720, 1.0, 'c1213'),
+
+
+  ];
+
+  List<UndirectedEdge> ISCEdges = [
+    UndirectedEdge.inferWeight(ISCNodes[0], ISCNodes[1]),
+    UndirectedEdge.inferWeight(ISCNodes[1], ISCNodes[2]),
+    UndirectedEdge.inferWeight(ISCNodes[2], ISCNodes[3]),
+    UndirectedEdge.inferWeight(ISCNodes[3], ISCNodes[4]),
+    UndirectedEdge.inferWeight(ISCNodes[4], ISCNodes[5]),
+    UndirectedEdge.inferWeight(ISCNodes[5], ISCNodes[6]),
+
+  ];
+
+  Graph ISCGraph = Graph(ISCNodes, ISCEdges);
+  Node? closestNode = ISCGraph.findNodeFromRoom('123');
+  }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -50,29 +166,14 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
-  final TextStyle textStyle = const TextStyle(
-    fontSize: 100
-  );
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  final String _room_number = "";
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  String roomNumber = "9999";
+  String locationType = "near room";
 
   @override
   Widget build(BuildContext context) {
@@ -91,64 +192,34 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times lol:',
+            DropdownButton<String>(
+              value: "near room",
+              items: const <DropdownMenuItem<String>>[
+                DropdownMenuItem(value: "near room", child: Text("near room")),
+                DropdownMenuItem(value: "in room", child: Text("in room"))
+              ],
+              onChanged: (String? value) {
+                setState(() {
+                  locationType = value ?? "near room";
+                });
+              }
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 20
+            TextFormField(
+              controller: TextEditingController(
+                text: roomNumber
               ),
-              child: SizedBox(
-                width: 300,
-                child: TextFormField(
-                  cursorColor: Colors.green,
-                  focusNode: FocusNode(),
-                  controller: TextEditingController(text: _room_number),
-                  style: widget.textStyle,
-                  autocorrect: false,
-                  autofocus: true,
-                  textAlign: TextAlign.center,
-                  maxLength: 4,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-                  onFieldSubmitted: (_room_number) {
-                    // here is where we would put logic for if we ask the user for second input
+              autocorrect: false,
+              maxLength: 4,
+              keyboardType: TextInputType.number
 
-                  } // onFieldSubmitted
-                ),
-              ),
-            )
-          ],
+                ), 
+            ]
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
   }
 
 
