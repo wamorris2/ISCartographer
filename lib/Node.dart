@@ -28,9 +28,6 @@ class Node {
   @override
   int get hashCode => Object.hash(_trait, _x, _y, _z);
 
-  @override
-  String toString()
-
   bool equals(Node other) {
     return other.getX() == _x && other.getY() == _y && other.getZ() == _z && other.getTrait() == _trait;
   }

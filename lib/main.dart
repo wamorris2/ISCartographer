@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:isc_cartogropher/UndirectedEdge.dart';
-import 'package:location/location.dart';
 import 'Graph.dart';
 import 'Node.dart';
 
