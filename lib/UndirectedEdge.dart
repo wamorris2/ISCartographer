@@ -1,18 +1,18 @@
 import 'Node.dart';
+import 'Edge.dart';
 
-class UndirectedEdge {
-  late Node _src, _dest;
-  late double _weight;
+class UndirectedEdge extends Edge {
+  late Node _src;
 
-  UndirectedEdge(Node src, Node dest, double weight) {
+  UndirectedEdge(Node src, Node dest, double weight) : super(dest, weight) {
     _src = src;
-    _dest = dest;
-    _weight = weight;
   }
 
-  UndirectedEdge.inferWeight(Node src, Node dest) {
+  UndirectedEdge.inferWeight(Node src, Node dest) : super(dest, Node.distance(src, dest)){
     _src = src;
-    _dest = dest;
-    _weight = Node.distance(src, dest);
+  }
+
+  Node getSrc() {
+    return _src;
   }
 }

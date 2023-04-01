@@ -28,6 +28,9 @@ class Node {
   @override
   int get hashCode => Object.hash(_trait, _x, _y, _z);
 
+  @override
+  String toString()
+
   bool equals(Node other) {
     return other.getX() == _x && other.getY() == _y && other.getZ() == _z && other.getTrait() == _trait;
   }
@@ -38,6 +41,10 @@ class Node {
 
   static double distance(Node a, Node b) {
     return sqrt(pow(a.getX() - b.getX(), 2)+pow(a.getY() - b.getY(), 2) + pow(a.getZ() - b.getZ(), 2));
+  }
+
+  void addEdge(Edge e) {
+    _edges.add(e);
   }
 
   List<Edge> getEdges() {

@@ -2,10 +2,10 @@ import 'dart:core';
 import 'Node.dart';
 
 class Edge {
-  late int _weight;
+  late double _weight;
   late Node _dest;
 
-  Edge(Node d, int w) {
+  Edge(Node d, double w) {
     _dest = d;
     _weight = w;
   }
@@ -14,7 +14,7 @@ class Edge {
     return _dest;
   }
 
-  int getWeight() {
+  double getWeight() {
     return _weight;
   }
 }

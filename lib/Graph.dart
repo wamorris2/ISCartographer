@@ -16,7 +16,12 @@ class Graph {
 
   void addEdgesToNodes(List<UndirectedEdge> edges) {
     for (final e in edges) {
+      Node n1 = e.getSrc();
+      Node n2 = e.getDest();
 
+      // add two directed edges between the two nodes
+      n1.addEdge(Edge(n2, e.getWeight()));
+      n2.addEdge(Edge(n1, e.getWeight()));
     }
   }
 
@@ -32,12 +37,14 @@ class Graph {
     return sqrt(pow(a.getX() - b.getX(), 2) + pow(a.getY() - b.getY(), 2) + pow(a.getZ() - b.getZ(), 2));
   }
 
-  Path findShortestPath(Node start, Node end) {
-    Path path = Path(start);
+  PathNode findShortestPath(Node start, Node end) {
+    //Path path = Path(start);
     PathNode curr = PathNode(start, null, 0, distance(start, end));
     PriorityQueue<PathNode> openNodes = PriorityQueue();
+    openNodes.add(curr);
     List<PathNode> closedNodes = [];
     while (curr != end) {
+      curr = openNodes.removeFirst();
       closedNodes.add(curr);
       List<Edge> edges = curr.getEdges();
       for (int i = 0; i < edges.length; i++) {
@@ -60,7 +67,7 @@ class Graph {
         }
       }
     }
-    return path;
+    return curr;
   }
 
 

@@ -1,7 +1,8 @@
 import 'Node.dart';
 import 'Edge.dart';
+import 'dart:core';
 
-class PathNode extends Node{
+class PathNode extends Node implements Comparable{
   late double _g, _h;
   late PathNode? _parent;
 
@@ -34,5 +35,32 @@ class PathNode extends Node{
 
   double getCost() {
     return _g + _h;
+  }
+
+  @override
+  int compareTo(other) {
+    if (other is PathNode) {
+      if (this.getCost() < other.getCost())
+        return -1;
+      if (this.getCost() > other.getCost())
+        return 1;
+      if (this.getH() < other.getH())
+        return -1;
+      if (this.getH() > other.getH())
+        return 1;
+    }
+    return 0;
+  }
+
+  @override
+  String toString() {
+    String ret = "";
+    PathNode? curr = this;
+    while (curr is PathNode) {
+      ret += curr.getTrait();
+
+      curr = _parent;
+    }
+    return ret;
   }
 }
