@@ -172,7 +172,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String roomNumber = "9999";
+  String roomNumber = "";
   String locationType = "near room";
 
   @override
@@ -207,19 +207,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }
             ),
-            TextFormField(
+            SizedBox(
+              // height: 200,
+            width:100,
+            child: TextFormField(
               controller: TextEditingController(
                 text: roomNumber
               ),
               autocorrect: false,
               maxLength: 4,
               keyboardType: TextInputType.number
-
-                ), 
+            )
+                ),
             ]
           ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 
 
