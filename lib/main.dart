@@ -298,7 +298,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 DropdownMenuItem(value: "near room", child: Text("near room")),
                 DropdownMenuItem(value: "in room", child: Text("in room"))
               ],
-              onChanged: null
+              onChanged: (String? value) {
+                if (value != null) {setState(() {
+                  locationType = value;
+                });}
+              }
             ),
             SizedBox(
               // height: 200,
