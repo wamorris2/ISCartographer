@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'NavigationWidget.dart';
 import 'package:isc_cartogropher/UndirectedEdge.dart';
 import 'Graph.dart';
 import 'Node.dart';
@@ -272,38 +273,13 @@ class MyHomePage extends StatefulWidget {
 
 }
 
-class NavigationWidget extends StatefulWidget {
-  final String roomNumber;
-  NavigationState(this.roomNumber);
-
-  @override
-  NavigationState createState() => NavigationState();
-}
-
-class NavigationState extends State<NavigationWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Navigation Route'),
-      ),
-      body: Center(child: Image.asset("assets/ISC_First.png")),
-    );
-  }
-}
-
 class _MyHomePageState extends State<MyHomePage> {
-  String roomNumber = "";
+
+  String roomNumber = "0000";
   String locationType = "near room";
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -317,16 +293,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DropdownButton<String>(
-              value: "near room",
+              value: locationType,
               items: const <DropdownMenuItem<String>>[
                 DropdownMenuItem(value: "near room", child: Text("near room")),
                 DropdownMenuItem(value: "in room", child: Text("in room"))
               ],
-              onChanged: (String? value) {
-                setState(() {
-                  locationType = value ?? "near room";
-                });
-              }
+              onChanged: null
             ),
             SizedBox(
               // height: 200,
@@ -339,19 +311,19 @@ class _MyHomePageState extends State<MyHomePage> {
               maxLength: 4,
               keyboardType: TextInputType.number
             )
-                ),
-            ]
-          ),
+            ),
+          ]
         ),
+      ),
       floatingActionButton: FloatingActionButton (
         onPressed:() {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) =>  NavigationWidget(roomNumber)),
+            MaterialPageRoute(builder: (context) =>  const NavigationWidget()),
           );
         },
         backgroundColor: Colors.black,
-        child: Text('GO!'),
+        child: const Text('GO!'),
       ),
       ); // This trailing comma makes auto-formatting nicer for build methods.
   }
