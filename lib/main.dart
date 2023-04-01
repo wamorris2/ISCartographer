@@ -308,21 +308,20 @@ class _MyHomePageState extends State<MyHomePage> {
               // height: 200,
             width:100,
             child: TextFormField(
-              initialValue: "0000",
               controller: TextEditingController(
                 text: roomNumber
               ),
               autocorrect: false,
               maxLength: 4,
               keyboardType: TextInputType.number,
-              onSaved: (String? value) {
-                if (value != null) {
-                  setState(() {
-                    roomNumber = value;
-                  });
+              onFieldSubmitted: (String? value) {
+                  if (value != null) {
+                    setState(() {
+                      roomNumber = value;
+                    });
+                  }
                 }
-              },
-            )
+              )
             ),
           ]
         ),
