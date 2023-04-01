@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'NavigationWidget.dart';
 import 'package:isc_cartogropher/UndirectedEdge.dart';
 import 'Graph.dart';
@@ -314,6 +315,8 @@ class _MyHomePageState extends State<MyHomePage> {
               autocorrect: false,
               maxLength: 4,
               keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly],
               onFieldSubmitted: (String? value) {
                   if (value != null) {
                     setState(() {
