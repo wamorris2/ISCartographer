@@ -308,12 +308,20 @@ class _MyHomePageState extends State<MyHomePage> {
               // height: 200,
             width:100,
             child: TextFormField(
+              initialValue: "0000",
               controller: TextEditingController(
                 text: roomNumber
               ),
               autocorrect: false,
               maxLength: 4,
-              keyboardType: TextInputType.number
+              keyboardType: TextInputType.number,
+              onSaved: (String? value) {
+                if (value != null) {
+                  setState(() {
+                    roomNumber = value;
+                  });
+                }
+              },
             )
             ),
           ]
@@ -323,7 +331,10 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed:() {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) =>  const NavigationWidget()),
+            MaterialPageRoute(builder: (context) =>  NavigationWidget(
+              roomNumber: roomNumber,
+              locationType: locationType,
+            )),
           );
         },
         backgroundColor: Colors.black,
