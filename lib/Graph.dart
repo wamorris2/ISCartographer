@@ -8,6 +8,7 @@ import 'package:collection/collection.dart';
 
 class Graph {
   late List<Node> _nodes;
+
   Graph(List<Node> nodes, List<UndirectedEdge> edges) {
     _nodes = nodes;
     addEdgesToNodes(edges);
@@ -17,6 +18,14 @@ class Graph {
     for (final e in edges) {
 
     }
+  }
+
+  Node? findNodeFromRoom(String roomNumber) {
+    for (final n in _nodes) {
+      if (n.getTrait() == 'r$roomNumber')
+        return n;
+    }
+    return null;
   }
 
   double distance(Node a, Node b) {
