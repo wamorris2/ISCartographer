@@ -1,14 +1,13 @@
 import 'Node.dart';
 import 'Edge.dart';
 
-class PathNode {
+class PathNode extends Node{
   late double _g, _h;
   late PathNode? _parent;
-  late List<Edge> _edges;
 
-  PathNode(PathNode? parent, List<Edge> edges, double g, double h) {
+  PathNode(Node source, PathNode? parent, double g, double h) :
+        super(source.getEdges(), source.getFloor(), source.getX(), source.getY(), source.getZ(), source.getTrait()) {
     _parent = parent;
-    _edges = edges;
     _g = g;
     _h = h;
   }
@@ -17,16 +16,20 @@ class PathNode {
     return _parent;
   }
 
-  List<Edge> getEdges() {
-    return _edges;
-  }
-
   double getG() {
     return _g;
   }
 
+  void setG(double g) {
+    _g = g;
+  }
+
   double getH() {
     return _h;
+  }
+
+  void setH(double h) {
+    _h = h;
   }
 
   double getCost() {

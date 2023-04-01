@@ -17,6 +17,17 @@ class Node {
     _trait = trait;
   }
 
+  @override
+  bool operator ==(Object other) =>
+      other is Node &&
+          other.getTrait() == _trait &&
+          other.getX() == _x &&
+          other.getY() == _y &&
+          other.getZ() == _z;
+
+  @override
+  int get hashCode => Object.hash(_trait, _x, _y, _z);
+
   bool equals(Node other) {
     return other.getX() == _x && other.getY() == _y && other.getZ() == _z && other.getTrait() == _trait;
   }

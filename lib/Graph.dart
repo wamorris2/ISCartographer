@@ -1,5 +1,6 @@
 import 'Node.dart';
 import 'Edge.dart';
+import 'UndirectedEdge.dart';
 import 'Path.dart';
 import 'PathNode.dart';
 import 'dart:math';
@@ -7,8 +8,15 @@ import 'package:collection/collection.dart';
 
 class Graph {
   late List<Node> _nodes;
-  Graph(List<Node> nodes) {
+  Graph(List<Node> nodes, List<UndirectedEdge> edges) {
     _nodes = nodes;
+    addEdgesToNodes(edges);
+  }
+
+  void addEdgesToNodes(List<UndirectedEdge> edges) {
+    for (final e in edges) {
+
+    }
   }
 
   double distance(Node a, Node b) {
@@ -17,32 +25,36 @@ class Graph {
 
   Path findShortestPath(Node start, Node end) {
     Path path = Path(start);
-    PathNode curr = PathNode(null, start.getEdges(), 0, distance(start, end));
+    PathNode curr = PathNode(start, null, 0, distance(start, end));
     PriorityQueue<PathNode> openNodes = PriorityQueue();
-    List<PathNode> closedNodes = [start];
-    while (curr != start) {
+    List<PathNode> closedNodes = [];
+    while (curr != end) {
       closedNodes.add(curr);
       List<Edge> edges = curr.getEdges();
       for (int i = 0; i < edges.length; i++) {
         Node neigh = edges[i].getDest();
-        int g = curr.getG() + neigh.getG();
-        if (closedNodes.contains(neigh)) continue;
+        PathNode neighPath = PathNode(neigh, curr, curr.getG() + edges[i].getWeight(), distance(neigh, end));
+        if (closedNodes.contains(neighPath)) continue;
         bool inside = false;
         for (final v in openNodes.unorderedElements) {
-          if (v.equals(neigh)) {
-
+          if (v.equals(neighPath)) {
+            if (neighPath.getCost() < v.getCost()) {
+              openNodes.remove(v);
+              openNodes.add(neighPath);
+            }
+            inside = true;
+            break;
           }
         }
         if (!inside) {
-          openNodes.add(n);
+          openNodes.add(neighPath);
         }
       }
     }
-
-
-
     return path;
   }
+
+
 
   // get current location
   Node findNearestNode(int x, int y, int z) {
