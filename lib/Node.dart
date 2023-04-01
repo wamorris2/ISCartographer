@@ -36,6 +36,10 @@ class Node {
     return sqrt(pow(other.getX() - _x, 2)+pow(other.getY() - _y, 2) + pow(other.getZ() - _z, 2));
   }
 
+  static double distance(Node a, Node b) {
+    return sqrt(pow(a.getX() - b.getX(), 2)+pow(a.getY() - b.getY(), 2) + pow(a.getZ() - b.getZ(), 2));
+  }
+
   List<Edge> getEdges() {
     return _edges;
   }
