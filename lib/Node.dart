@@ -3,18 +3,16 @@ import 'Graph.dart';
 import 'dart:math';
 
 class Node extends Comparable{
-  late List<Edge> _edges;
   late int _floor;
   late double _x, _y, _z;
   late String _trait;
-  late Node? _parent;
+  List<Edge> _edges = [];
+  Node? _parent = null;
   double _g = double.infinity, _h = double.infinity;
   bool _inOpenSet = false;
   bool _inClosedSet = false;
 
-  Node(Node? parent, List<Edge> edges, int floor, double x, double y, double z, String trait) {
-    _parent = parent;
-    _edges = edges;
+  Node(int floor, double x, double y, double z, String trait) {
     _floor = floor;
     _x = x;
     _y = y;
