@@ -38,7 +38,7 @@ class NavigationState extends State<NavigationWidget> {
   Future <Null> init() async {
     paint.color = Colors.red;
     paint.strokeWidth = 5.0;
-    final ByteData data = await rootBundle.load('img/guide1.png');
+    final ByteData data = await rootBundle.load('assets/ISC_First.png');
     image = await loadImage( Uint8List.view(data.buffer));
   }
 
