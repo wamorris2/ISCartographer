@@ -4,6 +4,7 @@ import 'NavigationWidget.dart';
 import 'package:isc_cartogropher/UndirectedEdge.dart';
 import 'Graph.dart';
 import 'Node.dart';
+import 'InputRow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -276,7 +277,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  String roomNumber = "0000";
+  String roomNumber1 = "0000";
+  String roomNumber2 = "0000";
   String locationType = "near room";
 
   @override
@@ -290,51 +292,35 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            DropdownButton<String>(
-              value: locationType,
-              items: const <DropdownMenuItem<String>>[
-                DropdownMenuItem(value: "near room", child: Text("near room")),
-                DropdownMenuItem(value: "in room", child: Text("in room"))
-              ],
-              onChanged: (String? value) {
-                if (value != null) {setState(() {
-                  locationType = value;
-                });}
-              }
-            ),
-            SizedBox(
-              // height: 200,
-            width:100,
-            child: TextFormField(
-              controller: TextEditingController(
-                text: roomNumber
-              ),
-              autocorrect: false,
-              maxLength: 4,
-              keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly],
-              onFieldSubmitted: (String? value) {
-                  if (value != null) {
-                    setState(() {
-                      roomNumber = value;
-                    });
-                  }
-                }
-              )
-            ),
-          ]
-        ),
+        //use separate script to lay out the inputs
+        child: inputRow(
+          locationType,
+          (String ? value) {
+          if (value != null) {
+            setState(() {
+              locationType = value;
+            });
+          }
+          },
+          (String ? value) {
+            if (value != null) {
+            setState(() {
+              roomNumber1 = value;
+            });}},
+          (String ? value) {
+            if (value != null) {
+              setState(() {
+              roomNumber2 = value;
+            });}},
+        )
       ),
       floatingActionButton: FloatingActionButton (
         onPressed:() {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>  NavigationWidget(
-              roomNumber: roomNumber,
+              roomNumber1: roomNumber1,
+              roomNumber2: roomNumber2,
               locationType: locationType,
             )),
           );

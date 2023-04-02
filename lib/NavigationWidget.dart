@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NavigationWidget extends StatefulWidget {
-  const NavigationWidget({super.key, required this.roomNumber, required this.locationType});
+  const NavigationWidget({super.key, required this.roomNumber1, required this.roomNumber2, required this.locationType});
 
-  final String roomNumber;
+  final String roomNumber1;
+  final String roomNumber2;
   final String locationType;
 
   @override
@@ -11,9 +12,6 @@ class NavigationWidget extends StatefulWidget {
 }
 
 class NavigationState extends State<NavigationWidget> {
-
-  String roomNumber = "0000";
-  String locationType = "near room";
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class NavigationState extends State<NavigationWidget> {
       ),
       body: Center(child: Column(
           children : <Widget>[
-            Text("${widget.locationType} ${widget.roomNumber}"),
+            Text("from ${widget.locationType} ${widget.roomNumber1} to ${widget.roomNumber2}"),
             Image.asset("assets/ISC_First.png"),
           ]
       )),
