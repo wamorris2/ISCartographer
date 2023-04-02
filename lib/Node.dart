@@ -17,6 +17,7 @@ class Node extends Comparable{
     _x = x;
     _y = y;
     _z = z;
+    _inClosedSet = false;
     _trait = trait;
   }
 

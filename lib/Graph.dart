@@ -32,13 +32,21 @@ class Graph {
     return null;
   }
 
+  void _zeroOutNodes() {
+    for (final n in _nodes) {
+      n.setClosedSet(false);
+      n.setOpenSet(false);
+      n.setParent(null);
+    }
+  }
+
   Queue<Node> findShortestPath(Node start, Node end) {
+    _zeroOutNodes();
     Node curr = start;
     PriorityQueue<Node> openNodes = PriorityQueue();
     openNodes.add(curr);
     while (openNodes.isNotEmpty) {
       curr = openNodes.removeFirst();
-      print('$curr');
       if (curr == end) {
         final path = Queue<Node>()..add(end);
         while (curr.getParent() != null) {
@@ -53,6 +61,7 @@ class Graph {
       List<Edge> edges = curr.getEdges();
       for (int i = 0; i < edges.length; i++) {
         Node neigh = edges[i].getDest();
+
         if (neigh.inClosedSet()) continue;
         if (!neigh.inOpenSet()) {
           neigh
@@ -62,6 +71,7 @@ class Graph {
           neigh.setH(h);
 
           openNodes.add(neigh);
+
           neigh.setOpenSet(true);
         }
       }
