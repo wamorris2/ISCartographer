@@ -42,3 +42,4 @@ Row inputRow(String locationType, void Function(String ?)? onLocationType,
       ]
   );
 }
+

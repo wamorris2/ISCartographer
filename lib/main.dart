@@ -5,6 +5,7 @@ import 'package:isc_cartogropher/UndirectedEdge.dart';
 import 'Graph.dart';
 import 'Node.dart';
 import 'InputRow.dart';
+import 'test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String roomNumber1 = "0000";
   String roomNumber2 = "0000";
   String locationType = "near room";
+  Text errorText = const Text("");
 
   @override
   Widget build(BuildContext context) {
@@ -72,29 +74,50 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         //use separate script to lay out the inputs
-        child: inputRow(
-          locationType,
-          (String ? value) {
-          if (value != null) {
-            setState(() {
-              locationType = value;
-            });
-          }
-          },
-          (String ? value) {
-            if (value != null) {
-            setState(() {
-              roomNumber1 = value;
-            });}},
-          (String ? value) {
-            if (value != null) {
-              setState(() {
-              roomNumber2 = value;
-            });}},
+        child: Column (
+          children: <Widget>[
+            inputRow(
+              locationType,
+                  (String ? value) {
+                if (value != null) {
+                  setState(() {
+                    locationType = value;
+                  });
+                }
+              },
+                  (String ? value) {
+                if (value != null) {
+                  setState(() {
+                    roomNumber1 = value;
+                  });}},
+                  (String ? value) {
+                if (value != null) {
+                  setState(() {
+                    roomNumber2 = value;
+                  });}},
+            ),
+            errorText
+          ],
         )
       ),
       floatingActionButton: FloatingActionButton (
         onPressed:() {
+
+          Graph graph = ISCGraph;
+
+          Node? node = graph.findNodeFromRoom(roomNumber1);
+          if (node == null) { setState(() {
+            errorText = const Text("starting room is not a valid room");
+            });
+            return;
+          }
+          node = graph.findNodeFromRoom(roomNumber2);
+          if (node == null) { setState(() {
+            errorText = const Text("destination room is not a valid room");
+            });
+            return;
+          }
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>  NavigationWidget(
