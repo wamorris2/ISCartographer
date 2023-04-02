@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'test.dart';
+import 'Graph.dart';
 
 class NavigationWidget extends StatefulWidget {
   const NavigationWidget({super.key, required this.roomNumber1, required this.roomNumber2, required this.locationType});
@@ -13,6 +15,9 @@ class NavigationWidget extends StatefulWidget {
 
 class NavigationState extends State<NavigationWidget> {
 
+  final Graph isc = ISCGraph;
+  final Image firstFloor = Image.asset("assets/ISC_First.png");
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,7 +2,7 @@ import 'Graph.dart';
 import 'Node.dart';
 import 'UndirectedEdge.dart';
 import 'dart:collection';
-List<Node> ISCNodes = [
+final List<Node> ISCNodes = [
 // Corridors 0 - 83
 Node(1, 811, 287, 1.0, 'c1007'), // 0
 Node(1, 811, 380, 1.0, 'c1007'), // 1
@@ -232,7 +232,7 @@ Node(1, 1450, 255, 1.0, 'r1287'), // 203
 Node(1, 1383, 224, 1.0, 'r1289'), // 204
 Node(1, 1285, 207, 1.0, 'r1291'), // 205
 ];
-List<UndirectedEdge> ISCEdges = [
+final List<UndirectedEdge> ISCEdges = [
 // Room-Corridor edges
 UndirectedEdge(ISCNodes[90], ISCNodes[0], 0),
 UndirectedEdge(ISCNodes[91], ISCNodes[1], 0),
@@ -483,7 +483,7 @@ UndirectedEdge.inferWeight(ISCNodes[87], ISCNodes[88]),
 UndirectedEdge.inferWeight(ISCNodes[88], ISCNodes[89]),
 
 ];
-Graph ISCGraph = Graph(ISCNodes, ISCEdges);
+final Graph ISCGraph = Graph(ISCNodes, ISCEdges);
 
 Queue<Node>? shortestPathBetweenRooms(String roomSrc, String roomDest) {
   Node? nodeRoomSrc = ISCGraph.findNodeFromRoom(roomSrc);
