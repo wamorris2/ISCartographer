@@ -1,8 +1,8 @@
+import 'dart:collection';
+
 import 'Node.dart';
 import 'Edge.dart';
 import 'UndirectedEdge.dart';
-import 'Path.dart';
-import 'PathNode.dart';
 import 'dart:math';
 import 'package:collection/collection.dart';
 
@@ -27,47 +27,46 @@ class Graph {
 
   Node? findNodeFromRoom(String roomNumber) {
     for (final n in _nodes) {
-      if (n.getTrait() == 'r$roomNumber')
-        return n;
+      if (n.getTrait() == 'r$roomNumber') return n;
     }
     return null;
   }
 
-  double distance(Node a, Node b) {
-    return sqrt(pow(a.getX() - b.getX(), 2) + pow(a.getY() - b.getY(), 2) + pow(a.getZ() - b.getZ(), 2));
-  }
-
-  PathNode findShortestPath(Node start, Node end) {
-    //Path path = Path(start);
-    PathNode curr = PathNode(start, null, 0, distance(start, end));
-    PriorityQueue<PathNode> openNodes = PriorityQueue();
+  Queue<Node> findShortestPath(Node start, Node end) {
+    Node curr = start;
+    PriorityQueue<Node> openNodes = PriorityQueue();
     openNodes.add(curr);
-    List<PathNode> closedNodes = [];
-    while (curr != end) {
+    while (openNodes.isNotEmpty) {
       curr = openNodes.removeFirst();
-      closedNodes.add(curr);
+      print('$curr');
+      if (curr == end) {
+        final path = Queue<Node>()..add(end);
+        while (curr.getParent() != null) {
+          curr = curr.getParent()!;
+          path.addFirst(curr);
+        }
+
+        return path;
+      }
+      curr..setClosedSet(true)
+          ..setOpenSet(false);
       List<Edge> edges = curr.getEdges();
       for (int i = 0; i < edges.length; i++) {
         Node neigh = edges[i].getDest();
-        PathNode neighPath = PathNode(neigh, curr, curr.getG() + edges[i].getWeight(), distance(neigh, end));
-        if (closedNodes.contains(neighPath)) continue;
-        bool inside = false;
-        for (final v in openNodes.unorderedElements) {
-          if (v.equals(neighPath)) {
-            if (neighPath.getCost() < v.getCost()) {
-              openNodes.remove(v);
-              openNodes.add(neighPath);
-            }
-            inside = true;
-            break;
-          }
-        }
-        if (!inside) {
-          openNodes.add(neighPath);
+        if (neigh.inClosedSet()) continue;
+        if (!neigh.inOpenSet()) {
+          neigh
+            ..setParent(curr)
+            ..setG(curr.getG() + edges[i].getWeight());
+          final h = Node.distance(neigh, end);
+          neigh.setH(h);
+
+          openNodes.add(neigh);
+          neigh.setOpenSet(true);
         }
       }
     }
-    return curr;
+    return Queue<Node>();
   }
 
 
