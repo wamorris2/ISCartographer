@@ -2,13 +2,18 @@ import 'Edge.dart';
 import 'Graph.dart';
 import 'dart:math';
 
-class Node {
+class Node extends Comparable{
   late List<Edge> _edges;
   late int _floor;
   late double _x, _y, _z;
   late String _trait;
+  late Node? _parent;
+  double _g = double.infinity, _h = double.infinity;
+  bool _inOpenSet = false;
+  bool _inClosedSet = false;
 
-  Node(List<Edge> edges, int floor, double x, double y, double z, String trait) {
+  Node(Node? parent, List<Edge> edges, int floor, double x, double y, double z, String trait) {
+    _parent = parent;
     _edges = edges;
     _floor = floor;
     _x = x;
@@ -27,6 +32,70 @@ class Node {
 
   @override
   int get hashCode => Object.hash(_trait, _x, _y, _z);
+
+  bool inOpenSet() {
+    return _inOpenSet;
+  }
+
+  bool inClosedSet() {
+    return _inClosedSet;
+  }
+
+  void setOpenSet(bool o) {
+    _inOpenSet = o;
+  }
+
+  void setClosedSet(bool o) {
+    _inClosedSet = o;
+  }
+
+  Node? getParent() {
+    return _parent;
+  }
+
+  void setParent(Node? p) {
+    _parent = p;
+  }
+
+  double getG() {
+    return _g;
+  }
+
+  void setG(double g) {
+    _g = g;
+  }
+
+  double getH() {
+    return _h;
+  }
+
+  void setH(double h) {
+    _h = h;
+  }
+
+  double getCost() {
+    return _g + _h;
+  }
+
+  @override
+  int compareTo(other) {
+    if (other is Node) {
+      if (getCost() < other.getCost())
+        return -1;
+      if (getCost() > other.getCost())
+        return 1;
+      if (getH() < other.getH())
+        return -1;
+      if (getH() > other.getH())
+        return 1;
+    }
+    return 0;
+  }
+
+  @override
+  String toString() {
+    return '$_trait: ($_x, $_y, $_z)';
+  }
 
   bool equals(Node other) {
     return other.getX() == _x && other.getY() == _y && other.getZ() == _z && other.getTrait() == _trait;
