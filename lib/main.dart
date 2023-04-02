@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'NavigationWidget.dart';
 import 'InputRow.dart';
 import 'test.dart';
+import 'Graph.dart';
+import 'Node.dart';
 
 void main() {
   runApp(const MyApp());
